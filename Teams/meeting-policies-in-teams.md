@@ -343,7 +343,7 @@ Currently, users can't play video or share their screen in a Teams meeting if th
 
 ### Allow a participant to give or request control
 
-This is a per-user policy. This setting controls whether the user can give control of the shared desktop or window to other meeting participants. To give control, hover over the top of the screen.
+This is a per-user policy. This setting controls whether the user can give control of the shared desktop or window to other meeting participants (internal or external). To give control, hover over the top of the screen.
 
 If this setting is turned on for the user, the **Give Control** option is displayed in the top bar in a sharing session.
 
@@ -353,16 +353,7 @@ If the settings is turned off for the user, the **Give Control** option isn't av
 
 ![Screenshot showing that the Give Control option is not available](media/meeting-policies-give-control-not-available.png)
 
-Let's look at the following example.
-
-|User |Meeting policy  |Allow participant to give or request control |
-|---------|---------|---------|
-|Daniela   | Global   | On       |
-|Babek    | Location1MeetingPolicy        | Off   |
-
-Daniela can give control of the shared desktop or window to other participants in a meeting organized by Babek whereas Babek can't give control to other participants.
-
-To use PowerShell to control who can give control or accept requests for control, use the AllowParticipantGiveRequestControl cmdlet.
+To use PowerShell to control who can give control or accept requests for control, use the AllowParticipantGiveRequestControl parameter in the [New-CsTeamsMeetingPolicy](https://docs.microsoft.com/powershell/module/skype/new-csteamsmeetingpolicy) or [Set-CsTeamsMeetingPolicy](https://docs.microsoft.com/powershell/module/skype/new-csteamsmeetingpolicy) cmdlets.
 
 > [!NOTE]
 > To give and take control of shared content during sharing, both parties must be using the Teams desktop client. Control isn't supported when either party is running Teams in a browser. This is due to a technical limitation that we're planning to fix.
@@ -378,7 +369,19 @@ This is a per-user policy. Whether an organization has this set for a user doesn
 
 Whether federated users can give control to external users while sharing is controlled by the **Allow an external participant to give or request control** setting in their organization.
 
-To use PowerShell to control whether external participants can give control or accept requests for control, use the AllowExternalParticipantGiveRequestControl cmdlet.
+Let's look at the following example.
+
+|User |Meeting policy  |Allow participant to give or request control |Allow an external participant to give or request control |
+|---------|---------|---------|
+|Daniela   | Global   | On       | On   |
+|Babek    | Location1MeetingPolicy        | Off   | Off   |
+|Robert    | Location2MeetingPolicy        | On   | Off   |
+
+- Daniela can give or request control of the shared desktop or window to other participants (either internal or external) if the other participant is allowed too.
+- Babek can't give or request control of the shared desktop or window to other participants.
+- Robert can give or request control of the shared desktop or window to other internal participant if the other is allowed too.
+
+To use PowerShell to control whether external participants can give control or accept requests for control, use the AllowExternalParticipantGiveRequestControl parameter in the [New-CsTeamsMeetingPolicy](https://docs.microsoft.com/powershell/module/skype/new-csteamsmeetingpolicy) or [Set-CsTeamsMeetingPolicy](https://docs.microsoft.com/powershell/module/skype/new-csteamsmeetingpolicy) cmdlets.
 
 ### Allow PowerPoint sharing
 
