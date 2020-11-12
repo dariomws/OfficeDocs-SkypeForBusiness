@@ -372,7 +372,7 @@ Whether federated users can give control to external users while sharing is cont
 Let's look at the following example.
 
 |User |Meeting policy  |Allow participant to give or request control |Allow an external participant to give or request control |
-|---------|---------|---------|
+|---------|---------|---------|---------|
 |Daniela   | Global   | On       | On   |
 |Babek    | Location1MeetingPolicy        | Off   | Off   |
 |Robert    | Location2MeetingPolicy        | On   | Off   |
